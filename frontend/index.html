@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PostCraft AI — Turn Your Ideas Into LinkedIn Posts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-icon">✦</div>
+        <span class="brand-name">PostCraft <span class="brand-gradient">AI</span></span>
+        <!-- <span class="badge badge-ai">✦ AI-Powered</span> -->
+      </div>
+      <div class="nav-meta">
+        <!-- <span class="groq-pill"> -->
+        <!-- <span class="pulse-dot"></span> -->
+        <!-- <span>Powered by Groq</span> -->
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-badge">
+        <span class="sparkle-icon">✨</span>
+        <span>Next-Gen LinkedIn Content Generation</span>
+      </div>
+      <h1 class="hero-title">Turn Your Ideas Into <span class="gradient-text">LinkedIn Posts.</span></h1>
+      <p class="hero-subtitle">Your AI-powered writing assistant for professional LinkedIn content.</p>
+    </section>
+
+    <!-- Central Input Composer -->
+    <section class="composer-section" aria-label="LinkedIn Post Composer">
+      <form id="generate-form" class="composer-card" novalidate>
+        <!-- Textarea Input Area -->
+        <div class="textarea-wrapper">
+          <textarea id="topic-input" name="topic" class="composer-textarea"
+            placeholder="Enter your topic, idea, or describe what you want to post about..." rows="3" autocomplete="off"
+            required></textarea>
+        </div>
+
+        <!-- Generation Settings Toolbar -->
+        <div class="composer-toolbar">
+          <div class="settings-group">
+            <!-- Length Select -->
+            <div class="setting-item">
+              <label for="length-select" class="setting-label">Length</label>
+              <div class="select-wrapper">
+                <select id="length-select" name="length" class="setting-select" required>
+                  <option value="Short">Short (1–5 lines)</option>
+                  <option value="Medium" selected>Medium (6–10 lines)</option>
+                  <option value="Long">Long (11–15 lines)</option>
+                </select>
+                <span class="select-chevron">▾</span>
+              </div>
+            </div>
+
+            <!-- Language Select -->
+            <div class="setting-item">
+              <label for="language-select" class="setting-label">Language</label>
+              <div class="select-wrapper">
+                <select id="language-select" name="language" class="setting-select" required>
+                  <option value="English" selected>English</option>
+                  <option value="Hinglish">Hinglish</option>
+                  <option value="Hindi">Hindi</option>
+                </select>
+                <span class="select-chevron">▾</span>
+              </div>
+            </div>
+
+            <!-- Tone Select -->
+            <div class="setting-item">
+              <label for="tone-select" class="setting-label">Tone</label>
+              <div class="select-wrapper">
+                <select id="tone-select" name="tone" class="setting-select">
+                  <option value="Professional" selected>Professional</option>
+                  <option value="Conversational">Conversational</option>
+                  <option value="Inspirational">Inspirational</option>
+                  <option value="Thought Leadership">Thought Leadership</option>
+                </select>
+                <span class="select-chevron">▾</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="action-group">
+            <button type="submit" id="generate-btn" class="btn btn-primary btn-generate">
+              <span class="btn-icon">✦</span>
+              <span class="btn-text">Generate LinkedIn Post</span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Clickable Suggestion Chips -->
+      <div class="suggestions-container">
+        <span class="suggestions-caption">Try generating about:</span>
+        <div class="suggestion-chips" id="suggestion-chips">
+          <button type="button" class="chip-btn" data-topic="Career Advice">Career Advice</button>
+          <button type="button" class="chip-btn" data-topic="Artificial Intelligence">Artificial Intelligence</button>
+          <button type="button" class="chip-btn" data-topic="Technology">Technology</button>
+          <button type="button" class="chip-btn" data-topic="Job Search">Job Search</button>
+          <button type="button" class="chip-btn" data-topic="Leadership">Leadership</button>
+          <button type="button" class="chip-btn" data-topic="Motivation">Motivation</button>
+          <button type="button" class="chip-btn" data-topic="Personal Branding">Personal Branding</button>
+          <button type="button" class="chip-btn" data-topic="Entrepreneurship">Entrepreneurship</button>
+        </div>
+      </div>
+
+      <!-- Feedback / Error Banner -->
+      <div id="form-feedback" class="form-feedback" role="alert" aria-live="polite" style="display: none;" hidden></div>
+    </section>
+
+    <!-- Output Section (Directly Below Input) -->
+    <section class="output-section" aria-label="Generated Content" id="output-section">
+      <!-- Loading State (Conditionally rendered during generation ONLY) -->
+      <div id="output-loading" class="loading-card" style="display: none;" hidden>
+        <div class="loading-spinner"></div>
+        <h3 class="loading-title">Creating your LinkedIn post...</h3>
+        <p class="loading-subtitle">Retrieving few-shot patterns &amp; querying openai/gpt-oss-20b</p>
+      </div>
+
+      <!-- Generated Post Result Card -->
+      <div id="output-result" class="post-result-card" style="display: none;" hidden>
+        <!-- Card Header -->
+        <div class="result-header">
+          <div class="author-block">
+            <div class="author-avatar">IN</div>
+            <div class="author-meta">
+              <div class="author-name-row">
+                <span class="author-name">Generated Post</span>
+                <span class="badge badge-ai-gen">✦ AI Generated</span>
+              </div>
+              <span class="author-sub">LinkedIn Preview &bull; Ready to publish</span>
+            </div>
+          </div>
+          <div class="result-badges" id="generation-meta">
+            <!-- <span class="badge badge-examples" id="examples-badge"> -->
+            <!-- <span class="meta-dot"></span> -->
+            <!-- <span id="examples-count-text">0 few-shot examples applied</span> -->
+            </span>
+          </div>
+        </div>
+
+        <!-- Post Content Area -->
+        <div class="post-body">
+          <div id="post-output-text" class="post-output-text"></div>
+        </div>
+
+        <!-- Card Footer Actions -->
+        <div class="result-footer">
+          <div class="footer-left">
+            <span class="char-count-text" id="post-stats-text"></span>
+          </div>
+          <div class="footer-actions">
+            <button type="button" id="copy-btn" class="btn btn-secondary btn-sm" title="Copy to clipboard">
+              <span class="btn-icon copy-icon">📋</span>
+              <span id="copy-btn-text">Copy to Clipboard</span>
+            </button>
+            <button type="button" id="regenerate-btn" class="btn btn-secondary btn-sm"
+              title="Regenerate with current topic">
+              <span class="btn-icon">↻</span>
+              <span>Regenerate</span>
+            </button>
+            <button type="button" id="clear-btn" class="btn btn-ghost btn-sm" title="Clear generated post">
+              <span class="btn-icon">✕</span>
+              <span>Clear</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>PostCraft AI</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

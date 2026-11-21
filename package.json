@@ -1,0 +1,28 @@
+{
+  "name": "linkedin-post-generator-js",
+  "version": "1.0.0",
+  "description": "GenAI LinkedIn Post Generator migrated from Python/Streamlit to Node.js/Express and Groq openai/gpt-oss-20b",
+  "type": "module",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "genai",
+    "few-shot-prompting",
+    "groq",
+    "openai-gpt-oss-20b",
+    "linkedin-post-generator",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "groq-sdk": "^0.15.0"
+  }
+}
