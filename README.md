@@ -70,9 +70,6 @@ linked-post-generator/
 ├── .gitignore                     # Git ignore rules for node_modules & credentials
 ├── package.json                   # Dependencies, project metadata, and npm scripts
 ├── README.md                      # Project overview and quick start guide
-├── PROJECT_ARCHITECTURE.md        # In-depth architectural & GenAI pipeline documentation
-├── API_DOCUMENTATION.md           # Complete REST API reference
-└── ENV_SETUP.md                   # Environment setup & Groq API key configuration
 ```
 
 ---
@@ -158,8 +155,4 @@ graph TD
 
 ---
 
-## 📖 Additional Documentation
 
-- [Project Architecture & Design](PROJECT_ARCHITECTURE.md)
-- [REST API Reference](API_DOCUMENTATION.md)
-- [Environment Setup Guide](ENV_SETUP.md)
